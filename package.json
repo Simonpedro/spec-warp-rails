@@ -1,0 +1,67 @@
+{
+  "name": "spec-warp-rails",
+  "displayName": "SpecWarp for Rails",
+  "description": "Jump instantly between Ruby files and their specs in Rails projects.",
+  "version": "0.1.0",
+  "publisher": "specwarp",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "spec-warp-rails.toggle",
+        "title": "SpecWarp: Toggle between file and spec"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "spec-warp-rails.toggle",
+        "key": "ctrl+shift+y",
+        "mac": "cmd+shift+y",
+        "when": "editorTextFocus && resourceExtname == .rb"
+      }
+    ],
+    "configuration": {
+      "title": "SpecWarp for Rails",
+      "properties": {
+        "specWarpRails.autoCreateSpec": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically create the spec file with RSpec boilerplate if it doesn't exist."
+        },
+        "specWarpRails.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications when toggling between files."
+        },
+        "specWarpRails.customSpecPattern": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Custom pattern for spec file resolution (reserved for future use)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "node --test out/test/",
+    "pretest": "pnpm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/vscode": "1.85.0",
+    "@vscode/test-electron": "2.5.2",
+    "typescript": "5.9.3"
+  },
+  "packageManager": "pnpm@10.24.0"
+}
